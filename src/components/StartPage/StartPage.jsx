@@ -1,11 +1,11 @@
-import {ToDoList} from '../ToDoList/ToDoList'
+// import {ToDoList} from '../ToDoList/ToDoList'
 
-export const StartPage = () => {
-    return (
-        <div className="StartPage">
-            <ToDoList />
-            <ToDoList />
-            <ToDoList />
-        </div>
-    );
-};
+// export const StartPage = () => {
+//     return (
+//         <div className="StartPage">
+//             <ToDoList />
+//             <ToDoList />
+//             <ToDoList />
+//         </div>
+//     );
+// };
