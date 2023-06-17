@@ -1,8 +1,8 @@
-// import 
+import "./style.css"
 
-export const ToDoList = ({name, tasks}) => {
+export const ToDoList = ({ name, tasks }) => {
     return (
-        <div>
+        <div className= 'ToDoList'>
 
             <h3>{name}</h3>
 
@@ -13,11 +13,11 @@ export const ToDoList = ({name, tasks}) => {
                     <input />
                     <button>+</button>
                 </div>
-
+                
                 <ul>
-                    <li><input  type="checkbox" checked={tasks[0].isDone} /><span>{tasks[0].title}</span></li>
-                    <li><input  type="checkbox" checked={tasks[1].isDone} /><span>{tasks[1].title}</span></li>
-                    <li><input  type="checkbox" checked={tasks[2].isDone} /><span>{tasks[2].title}</span></li>
+                {tasks.map(t => <li><input type="checkbox" checked={t.isDone} /><span>{t.title}</span> <button onClick={ () => {alert (t.id);} }>x</button></li>               
+                )
+                } 
                 </ul>
 
                 <div>
