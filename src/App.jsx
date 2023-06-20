@@ -1,58 +1,134 @@
+import React, { useState } from 'react';
 import { ToDoList } from './components/ToDoList/ToDoList'
 
+// const Counter = () => {
+//   let arr = useState(5);
+//   let data = arr[0];
+//   let setData = arr[1];
+//   return (
+//     <div onClick = {() => { setData(data + 1) } }>{data}</div>
 
+//   );
+//}
 
 function App() {
 
-  let tasks1 = [
-{id: 1, 
-title: "CSS",
-isDone: true,
-},
+  // let initTasks = [
+  //   {
+  //     id: 1,
+  //     title: "CSS",
+  //     isDone: true,
+  //   },
 
-{id: 2, 
-  title: "JS",
-  isDone: true,
-  },
+  //   {
+  //     id: 2,
+  //     title: "JS",
+  //     isDone: true,
+  //   },
 
-  {id: 3, 
-    title: "React",
-    isDone: false,
+  //   {
+  //     id: 3,
+  //     title: "React",
+  //     isDone: false,
+  //   },
+
+  //   {
+  //     id: 4,
+  //     title: "Redux",
+  //     isDone: false,
+  //   },
+
+  // ];
+
+
+  // let tasks2 = [
+  //   {id: 1, 
+  //   title: "Hello, world",
+  //   isDone: true,
+  //   },
+
+  //   {id: 2, 
+  //     title: "I\'m happy",
+  //     isDone: false,
+  //     },
+
+  //     {id: 3, 
+  //       title: "Yo",
+  //       isDone: false,
+  //       },
+
+  //     ];
+
+  // let arr = useState(initTasks);
+  // let tasks = arr[0];
+  // let setTasks = arr[1];
+
+  // const [tasks, setTasks] = useState(initTasks);
+  const [tasks, setTasks] = useState([
+    {
+      id: 1,
+      title: "CSS",
+      isDone: true,
     },
 
-    {id: 4, 
+    {
+      id: 2,
+      title: "JS",
+      isDone: true,
+    },
+
+    {
+      id: 3,
+      title: "React",
+      isDone: false,
+    },
+
+    {
+      id: 4,
       title: "Redux",
       isDone: false,
-      },
-
-  ];
-
-  let tasks2 = [
-    {id: 1, 
-    title: "Hello, world",
-    isDone: true,
     },
+
+  ]);
+  // <div>
+  //                   <button>ALL</button>
+  //                   <button>ACTIVE</button>
+  //                   <button>COMPLETED</button>
+  //               </div>
+
+  const [filter, setFilter] = useState('ALL');
+
+  let tasksForToDoList = tasks;
+
+  if (filter === 'COMPLETED') {
+    tasksForToDoList = tasks.filter(t => t.isDone === true);
     
-    {id: 2, 
-      title: "I'm happy",
-      isDone: false,
-      },
-    
-      // {id: 3, 
-      //   title: "Yo",
-      //   isDone: false,
-      //   },
-    
-      ];
-        
-    
+  }
+  if (filter === 'ACTIVE') {
+    tasksForToDoList = tasks.filter(t => t.isDone === false);
+  }
+
+  const removeTask = (id) => {
+    let filteredTasks = tasks.filter(t => t.id !== id);
+    //console.log(resultTask);
+    // alert(resultTask); 
+    setTasks(filteredTasks);
+  }
+
+  const changeFilter = (value) => {
+    setFilter(value)
+  };
+
   return (
 
     <div className='app'>
-      <ToDoList name={'What to learn'} tasks={tasks1}/>
+      <ToDoList name={'What to learn'}
+        tasks={tasksForToDoList}
+        removeTask={removeTask} 
+      changeFilter = {changeFilter} />
       {/* <ToDoList name={'Movies'} tasks={tasks2}/> */}
       {/* <ToDoList name={'Songs'} tasks={tasks2}/> */}
-         
+
     </div>
 
 

@@ -1,6 +1,6 @@
 import "./style.css"
 
-export const ToDoList = ({ name, tasks }) => {
+export const ToDoList = ({ name, tasks, removeTask, changeFilter, }) => {
     return (
         <div className= 'ToDoList'>
 
@@ -15,15 +15,15 @@ export const ToDoList = ({ name, tasks }) => {
                 </div>
                 
                 <ul>
-                {tasks.map(t => <li><input type="checkbox" checked={t.isDone} /><span>{t.title}</span> <button onClick={ () => {alert (t.id);} }>x</button></li>               
+                {tasks.map(t => <li><input type="checkbox" checked={t.isDone} /><span>{t.title}</span> <button onClick={ () => {removeTask(t.id)} }>x</button></li>               
                 )
                 } 
                 </ul>
 
                 <div>
-                    <button>ALL</button>
-                    <button>ACTIVE</button>
-                    <button>COMPLETED</button>
+                    <button onClick={ ()=> {changeFilter('ALL')} }>ALL</button>
+                    <button onClick={ ()=>{changeFilter('ACTIVE')} }>ACTIVE</button>
+                    <button onClick={ ()=>{changeFilter('COMPLETED')} }>COMPLETED</button>
                 </div>
 
             </div>
