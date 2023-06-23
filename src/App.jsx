@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import {v4} from 'uuid'
 import { ToDoList } from './components/ToDoList/ToDoList'
 
 // const Counter = () => {
@@ -66,30 +67,31 @@ function App() {
   // const [tasks, setTasks] = useState(initTasks);
   const [tasks, setTasks] = useState([
     {
-      id: 1,
+      id: v4(),
       title: "CSS",
       isDone: true,
     },
 
     {
-      id: 2,
+      id: v4(),
       title: "JS",
       isDone: true,
     },
 
     {
-      id: 3,
+      id: v4(),
       title: "React",
       isDone: false,
     },
 
     {
-      id: 4,
+      id: v4(),
       title: "Redux",
       isDone: false,
     },
 
   ]);
+  console.log(tasks);
   // <div>
   //                   <button>ALL</button>
   //                   <button>ACTIVE</button>
@@ -118,6 +120,7 @@ function App() {
   const changeFilter = (value) => {
     setFilter(value)
   };
+  
 
   return (
 

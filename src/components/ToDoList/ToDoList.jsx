@@ -15,7 +15,7 @@ export const ToDoList = ({ name, tasks, removeTask, changeFilter, }) => {
                 </div>
                 
                 <ul>
-                {tasks.map(t => <li><input type="checkbox" checked={t.isDone} /><span>{t.title}</span> <button onClick={ () => {removeTask(t.id)} }>x</button></li>               
+                {tasks.map(t => <li key={t.id} ><input type="checkbox" checked={t.isDone} /><span>{t.title}</span> <button onClick={ () => {removeTask(t.id)} }>x</button></li>               
                 )
                 } 
                 </ul>
