@@ -121,6 +121,12 @@ function App() {
     setFilter(value)
   };
   
+  const addTask =(title) => {
+const newTask = {id: v4(), title: title, isDone: false};
+const newTasks =[newTask, ...tasks];
+setTasks(newTasks);
+
+  }
 
   return (
 
@@ -128,7 +134,9 @@ function App() {
       <ToDoList name={'What to learn'}
         tasks={tasksForToDoList}
         removeTask={removeTask} 
-      changeFilter = {changeFilter} />
+      changeFilter = {changeFilter}
+      addTask = {addTask} />
+      
       {/* <ToDoList name={'Movies'} tasks={tasks2}/> */}
       {/* <ToDoList name={'Songs'} tasks={tasks2}/> */}
 
