@@ -91,7 +91,7 @@ function App() {
     },
 
   ]);
-  console.log(tasks);
+  
   // <div>
   //                   <button>ALL</button>
   //                   <button>ACTIVE</button>

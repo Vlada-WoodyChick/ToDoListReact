@@ -20,7 +20,15 @@ export const ToDoList = ({ name, tasks, removeTask, changeFilter, addTask }) => 
                         onChange={(e) => {
 
                             setNewTaskTitle(e.currentTarget.value)
-                        }} />
+                        }}
+                        onKeyPress={(e) => {
+                            if (e.ctrlKey && e.charCode === 13) {
+                                addTask(newTaskTitle);
+                                setNewTaskTitle('');
+                            }
+                        }
+                        } />
+                        
                     <button onClick={(e) => {
                         addTask(newTaskTitle)
                         setNewTaskTitle('');
