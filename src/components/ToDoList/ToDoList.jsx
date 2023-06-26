@@ -1,4 +1,4 @@
-import { useState } from "react"
+import {ChangeEvent, KeyboardEvent,  useState } from "react"
 import "./style.css"
 
 
@@ -6,6 +6,31 @@ import "./style.css"
 export const ToDoList = ({ name, tasks, removeTask, changeFilter, addTask }) => {
 
     const [newTaskTitle, setNewTaskTitle] = useState('');
+
+    const onClickHandler = () => {
+        if(newTaskTitle !== '')
+        addTask(newTaskTitle);
+        setNewTaskTitle('');
+    }
+
+    const onChangeHandler = (e) => {
+        setNewTaskTitle(e.currentTarget.value)
+    }
+    const onPressKeyHandler = (e) => {
+        if(e.charCode === 13 && newTaskTitle !== '') {
+            addTask(newTaskTitle);
+            setNewTaskTitle('');
+        }
+    }
+
+  const   onClickchangeFilterALL = () => changeFilter('ALL');
+  const   onClickchangeFilterACTIVE = () => changeFilter('ACTIVE');
+  const   onClickchangeFilterCOMPLETED = () => changeFilter('COMPLETED');
+
+const   onClickchangeFilter =() => {
+
+}
+
 
     return (
         <div className='ToDoList'>
@@ -17,26 +42,30 @@ export const ToDoList = ({ name, tasks, removeTask, changeFilter, addTask }) => 
 
                 <div>
                     <input value={newTaskTitle}
-                        onChange={(e) => {
+                        onChange={onChangeHandler}
+                        
+                        onKeyPress={onPressKeyHandler}
+                        />
 
-                            setNewTaskTitle(e.currentTarget.value)
-                        }} />
-                    <button onClick={(e) => {
-                        addTask(newTaskTitle)
-                        setNewTaskTitle('');
-                    }}>+</button>
+
+                         
+                    <button onClick={onClickHandler}>+</button>
                 </div>
 
                 <ul>
-                    {tasks.map(t => <li key={t.id} ><input type="checkbox" checked={t.isDone} /><span>{t.title}</span> <button onClick={() => { removeTask(t.id) }}>x</button></li>
-                    )
-                    }
+                    {tasks.map( t => {
+                        const onRemoveHandler = () => removeTask(t.id)
+                    return ( 
+                    <li key={t.id} ><input type="checkbox" checked={t.isDone} /><span>{t.title}</span> <button onClick={ onRemoveHandler }>x</button></li>)
+                    } )
+                    
+                }
                 </ul>
 
                 <div>
-                    <button onClick={(e) => { changeFilter('ALL') }}>ALL</button>
-                    <button onClick={(e) => { changeFilter('ACTIVE') }}>ACTIVE</button>
-                    <button onClick={(e) => { changeFilter('COMPLETED') }}>COMPLETED</button>
+                    <button onClick= {onClickchangeFilterALL}>ALL</button>
+                    <button onClick= { onClickchangeFilterACTIVE }>ACTIVE</button>
+                    <button onClick={ onClickchangeFilterCOMPLETED}>COMPLETED</button>
                 </div>
 
             </div>
