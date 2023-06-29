@@ -91,7 +91,7 @@ function App() {
     },
 
   ]);
-  console.log(tasks);
+  // // console.log(tasks);
   // <div>
   //                   <button>ALL</button>
   //                   <button>ACTIVE</button>
@@ -125,8 +125,15 @@ function App() {
 const newTask = {id: v4(), title: title, isDone: false};
 const newTasks =[newTask, ...tasks];
 setTasks(newTasks);
-
   }
+
+ const changeStatus  = (taskID, isDone) => {
+  const task = tasks.find( t=> t.id === taskID );
+  if (task) {
+    task.isDone = isDone;
+  }
+  setTasks([...tasks]);
+ }
 
   return (
 
@@ -134,8 +141,10 @@ setTasks(newTasks);
       <ToDoList name={'What to learn'}
         tasks={tasksForToDoList}
         removeTask={removeTask} 
+        filter={filter}
       changeFilter = {changeFilter}
-      addTask = {addTask} />
+      addTask = {addTask} 
+      changeTaskStatus = {changeStatus}/>
       
       {/* <ToDoList name={'Movies'} tasks={tasks2}/> */}
       {/* <ToDoList name={'Songs'} tasks={tasks2}/> */}
