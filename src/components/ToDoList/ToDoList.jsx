@@ -3,13 +3,13 @@ import "./style.css"
 
 
 
-export const ToDoList = ({ name, tasks, removeTask, filter, changeFilter, addTask, changeTaskStatus }) => {
+export const ToDoList = ({ name, tasks, removeTask, filter, changeFilter, addTask, changeTaskStatus, id, removeToDoList }) => {
 
     const [newTaskTitle, setNewTaskTitle] = useState('');
     const [error, setError] = useState(null);
     const onClickHandler = () => {
         if (newTaskTitle.trim() !== ''){
-            addTask(newTaskTitle.trim());
+            addTask(newTaskTitle.trim(), id);
             setNewTaskTitle('');   
         }else {
             setError('Field is required')  
@@ -22,7 +22,7 @@ export const ToDoList = ({ name, tasks, removeTask, filter, changeFilter, addTas
     const onPressKeyHandler = (e) => {
         setError(null);
         if (e.charCode === 13) {
-            addTask(newTaskTitle);
+            addTask(newTaskTitle, id);
             setNewTaskTitle('');
         }
 
@@ -30,19 +30,23 @@ export const ToDoList = ({ name, tasks, removeTask, filter, changeFilter, addTas
 
     }
 
-    const onClickchangeFilterALL = () => changeFilter('ALL');
-    const onClickchangeFilterACTIVE = () => changeFilter('ACTIVE');
-    const onClickchangeFilterCOMPLETED = () => changeFilter('COMPLETED');
+    const onClickchangeFilterALL = () => changeFilter('ALL', id);
+    const onClickchangeFilterACTIVE = () => changeFilter('ACTIVE', id);
+    const onClickchangeFilterCOMPLETED = () => changeFilter('COMPLETED', id);
 
     const onClickchangeFilter = () => {
 
     }
-
+const removeToDoListButton =() => {
+    removeToDoList(id);
+}
 
     return (
         <div className='ToDoList'>
 
-            <h3>{name}</h3>
+            <h3>{name}
+            <button onClick={removeToDoListButton}>-</button>
+            </h3>
 
 
             <div>
@@ -59,9 +63,9 @@ export const ToDoList = ({ name, tasks, removeTask, filter, changeFilter, addTas
 
                 <ul>
                     {tasks.map(t => {
-                        const onRemoveHandler = () => removeTask(t.id);
+                        const onRemoveHandler = () => removeTask(t.id, id);
 
-                        const onChangeHandlerStatus = (e) => { changeTaskStatus(t.id, e.currentTarget.checked) }
+                        const onChangeHandlerStatus = (e) => { changeTaskStatus(t.id, e.currentTarget.checked, id) }
 
                         return (
                             <li key={t.id} className={t.isDone ? "isDone": ""}>

@@ -41,7 +41,11 @@
   color: #888;
 }
 
-
+.app {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
 
 
  
