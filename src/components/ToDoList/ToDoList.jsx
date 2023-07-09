@@ -5,30 +5,30 @@ import "./style.css"
 
 export const ToDoList = ({ name, tasks, removeTask, filter, changeFilter, addTask, changeTaskStatus, id, removeToDoList }) => {
 
-    const [newTaskTitle, setNewTaskTitle] = useState('');
-    const [error, setError] = useState(null);
-    const onClickHandler = () => {
-        if (newTaskTitle.trim() !== ''){
-            addTask(newTaskTitle.trim(), id);
-            setNewTaskTitle('');   
-        }else {
-            setError('Field is required')  
-        }       
-    };
+    //const [newTaskTitle, setNewTaskTitle] = useState('');
+    // const [error, setError] = useState(null);
+    // const onClickHandler = () => {
+    //     if (newTaskTitle.trim() !== ''){
+    //         addTask(newTaskTitle.trim(), id);
+    //         setNewTaskTitle('');   
+    //     }else {
+    //         setError('Field is required')  
+    //     }       
+    // };
 
-    const onChangeHandler = (e) => {
-        setNewTaskTitle(e.currentTarget.value)
-    }
-    const onPressKeyHandler = (e) => {
-        setError(null);
-        if (e.charCode === 13) {
-            addTask(newTaskTitle, id);
-            setNewTaskTitle('');
-        }
+    // const onChangeHandler = (e) => {
+    //     setNewTaskTitle(e.currentTarget.value)
+    // }
+    // const onPressKeyHandler = (e) => {
+    //     setError(null);
+    //     if (e.charCode === 13) {
+    //         addTask(newTaskTitle, id);
+    //         setNewTaskTitle('');
+    //     }
 
 
 
-    }
+    // }
 
     const onClickchangeFilterALL = () => changeFilter('ALL', id);
     const onClickchangeFilterACTIVE = () => changeFilter('ACTIVE', id);
@@ -50,8 +50,9 @@ const removeToDoListButton =() => {
 
 
             <div>
-
-                <div>
+            <AddItemForm id={id} addTask={addTask}
+            />
+                {/* <div>
                     <input value={newTaskTitle}
                         onChange={onChangeHandler}
                         className={error? "error" : ""}
@@ -59,7 +60,7 @@ const removeToDoListButton =() => {
                     />
                     <button onClick={onClickHandler}>+</button>
                     { error &&  <div className="error-message">{error}</div> }
-                </div>
+                </div> */}
 
                 <ul>
                     {tasks.map(t => {
@@ -94,4 +95,44 @@ const removeToDoListButton =() => {
 
     )
 }
+
+
+const AddItemForm = ({addTask, id}) => {
+    const [newTaskTitle, setNewTaskTitle] = useState('');
+    const [error, setError] = useState(null);
+    const onClickHandler = () => {
+        if (newTaskTitle.trim() !== ''){
+            addTask(newTaskTitle.trim(), id);
+            setNewTaskTitle('');   
+        }else {
+            setError('Field is required')  
+        }       
+    };
+    const onChangeHandler = (e) => {
+        setNewTaskTitle(e.currentTarget.value)
+    }
+    const onPressKeyHandler = (e) => {
+        setError(null);
+        if (e.charCode === 13) {
+            addTask(newTaskTitle, id);
+            setNewTaskTitle('');
+        }
+    }
+
+    return(
+    <div>
+    <input value={newTaskTitle}
+        onChange={onChangeHandler}
+        className={error? "error" : ""}
+        onKeyPress={onPressKeyHandler}
+    />
+    <button onClick={onClickHandler}>+</button>
+    { error &&  <div className="error-message">{error}</div> }
+</div>
+    )
+}
+
+
+
+
 // // // const onChangeHandler = (e) => { console.log(t.id +'  ' + e.currentTarget.checked); }
