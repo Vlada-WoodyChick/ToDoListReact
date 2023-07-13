@@ -21,6 +21,7 @@ setTitle(e.currentTarget.value);
 }
 
 
+
     return ( 
       editMode?  
  <input value={editTitle}  onBlur={activateViewMode} autoFocus onChange={onChangeTitleHandler} /> :

@@ -136,8 +136,8 @@ function App() {
     setTasks({ ...tasksOBJ });
   }
   
-  const changeToDoListTitle = (newName, id) => {
-    const toDoList = toDoLists.find(t => t.id === id);
+  const changeToDoListTitle = (newName, toDoListID) => {
+    const toDoList = toDoLists.find(t => t.id === toDoListID);
     if(toDoList) toDoList.title = newName;
     setToDoLists([...toDoLists]);
   } 
