@@ -1,0 +1,20 @@
+.AddItemForm {
+    display: inline-block;
+    width: 20%;
+    height: 15%;
+    padding: 2% auto auto;
+}  
+
+
+.error {
+    border: red 4px solid;
+    }
+
+.error-message {
+    color: red;
+}
+
+
+.active-filter {
+    background-color: aquamarine;
+}
