@@ -34,7 +34,7 @@ export const AddItemForm = ({addItem}) => {
         className={error? "error" : ""}
         onKeyPress={onPressKeyHandler}
     />
-    <button onClick={onClickHandler}>+</button>
+    <button onClick={onClickHandler}>&#9998;</button>
     { error &&  <div className="error-message">{error}</div> }
 </div>
     )

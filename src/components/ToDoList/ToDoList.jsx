@@ -5,7 +5,7 @@ import "./style.css";
 
 
 
-export const ToDoList = ({ name, tasks, removeTask, filter, changeFilter, addTask, changeTaskStatus, id, removeToDoList }) => {
+export const ToDoList = ({ name, tasks, removeTask, filter, changeFilter, addTask, changeTaskStatus, id, removeToDoList, changeTaskTitle }) => {
 
     //const [newTaskTitle, setNewTaskTitle] = useState('');
     // const [error, setError] = useState(null);
@@ -51,12 +51,13 @@ const addTaskToDoList = (title) =>{
     return (
         <div className='ToDoList'>
 
-            <h3>{name}
+            <h3><EditableSpan title={name} onChange={ () => alert() }  />
             <button onClick={removeToDoListButton}>-</button>
             </h3>
 
 
             <div>
+                
             <AddItemForm  addItem={addTaskToDoList}/>
                 {/* <div>
                     <input value={newTaskTitle}
@@ -72,7 +73,13 @@ const addTaskToDoList = (title) =>{
                     {tasks.map(t => {
                         const onRemoveHandler = () => removeTask(t.id, id);
 
-                        const onChangeHandlerStatus = (e) => { changeTaskStatus(t.id, e.currentTarget.checked, id) }
+                        const onChangeHandlerStatus = (e) => { 
+                            changeTaskStatus(t.id, e.currentTarget.checked, id) }
+
+                        const onChangeTitleHandler = (newValue) => {
+                            changeTaskTitle(t.id, newValue, id);
+
+                        }
 
                         return (
                             <li key={t.id} className={t.isDone ? "isDone": ""}>
@@ -81,7 +88,8 @@ const addTaskToDoList = (title) =>{
                                     checked={t.isDone}
                                     onChange={onChangeHandlerStatus}
                                 />
-                                <span>{t.title}</span> 
+                                <EditableSpan title={t.title} onChange={ onChangeTitleHandler }  />
+                                {/* <span>{t.title}</span>  */}
                         
                                 <button onClick={onRemoveHandler}>x</button></li>)
                     })
